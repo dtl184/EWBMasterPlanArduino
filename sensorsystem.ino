@@ -10,7 +10,7 @@ const char WiFiAPPSK[] = "sparkfun";
 /////////////////////
 const int LED_PIN = 5; // Thing's onboard, green LED
 const int ANALOG_PIN = A0; // The only analog pin on the Thing
-const int DIGITAL_PIN = 12; // Digital pin to be read
+
 
 WiFiServer server(80);
 
@@ -73,16 +73,14 @@ void loop()
   else if (val == -2)
   {
       // TURBIDITY
-      int turbiditySensorValue = analogRead(A0);// read the input on analog pin 0:
+      int turbiditySensorValue = analogRead(ANALOG_ID); // read the input on analog pin 0:
       float turbidity = turbiditySensorValue * (5.0 / 1024.0); // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
 
 
+
       // If we're reading pins, print out those values:
-    s += "Analog Pin = ";
-    s += String(analogRead(ANALOG_PIN)/1024.0*5.0);
-    s += "<br>"; // Go to the next line.
-    s += "Digital Pin 12 = ";
-    s += String(digitalRead(DIGITAL_PIN));
+    s += "Turbidity = ";
+    s += String(turbidity);
   }
   else
   {
