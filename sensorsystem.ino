@@ -11,6 +11,10 @@ const char WiFiAPPSK[] = "sparkfun";
 const int LED_PIN = 5; // Thing's onboard, green LED
 const int ANALOG_PIN = A0; // The only analog pin on the Thing
 
+#include <Wire.h>
+#include <Adafruit_ADS1X15.h>
+
+Adafruit_ADS1015 ads1015
 
 WiFiServer server(80);
 
@@ -19,6 +23,7 @@ void setup()
   initHardware();
   setupWiFi();
   server.begin();
+  ads1015.begin();  // Initialize ads1015 at the default address 0x48
 }
 
 void loop() 
@@ -73,8 +78,9 @@ void loop()
   else if (val == -2)
   {
       // TURBIDITY
-      int turbiditySensorValue = analogRead(ANALOG_ID); // read the input on analog pin 0:
-      float turbidity = turbiditySensorValue * (5.0 / 1024.0); // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
+      int16_t adc0
+      adc0 = ads1015.readADC_SingleEnded(0);
+      float turbidity = adc0 * (5.0 / 1024.0); // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
 
 
 
