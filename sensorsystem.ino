@@ -14,7 +14,7 @@ const int ANALOG_PIN = A0; // The only analog pin on the Thing
 #include <Wire.h>
 #include <Adafruit_ADS1X15.h>
 
-Adafruit_ADS1015 ads1015
+Adafruit_ADS1015 ads1015 // create an instance of the ADC
 
 WiFiServer server(80);
 
@@ -23,6 +23,7 @@ void setup()
   initHardware();
   setupWiFi();
   server.begin();
+
   ads1015.begin();  // Initialize ads1015 at the default address 0x48
 }
 
@@ -82,7 +83,7 @@ void loop()
       adc0 = ads1015.readADC_SingleEnded(0);
       float turbidity = adc0 * (5.0 / 1024.0); // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
 
-
+      // SOIL MOISTURE
 
       // If we're reading pins, print out those values:
     s += "Turbidity = ";
