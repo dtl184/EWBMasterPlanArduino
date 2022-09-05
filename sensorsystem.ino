@@ -129,7 +129,7 @@ void setupWiFi()
 void initHardware()
 {
     Serial.begin(115200);
-    pinMode(DIGITAL_PIN, INPUT_PULLUP);
+//  pinMode(DIGITAL_PIN, INPUT_PULLUP);
     pinMode(LED_PIN, OUTPUT);
     digitalWrite(LED_PIN, LOW);
     // Don't need to set ANALOG_PIN as input,
